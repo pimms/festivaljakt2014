@@ -14,7 +14,7 @@ public class BaseActivity extends Activity {
 		// TODO
 		// Localize string
 		_progressDialog = new ProgressDialog(this);
-		_progressDialog.setMessage("!Loading...!");
+		_progressDialog.setMessage("Laster...");
 		_progressDialog.setCancelable(false);
 		_progressDialog.setIndeterminate(true);
 		_progressDialog.show();

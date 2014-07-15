@@ -16,12 +16,15 @@ import android.os.Looper;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class ScannerActivity extends Activity implements NfcReaderTask.Delegate, TagUploader.Delegate {
+public class ScannerActivity extends BaseActivity implements NfcReaderTask.Delegate,
+															 TagUploader.Delegate,
+															 View.OnTouchListener {
 	/**
 	 * This method converts dp unit to equivalent pixels, depending on device density.
 	 *
@@ -50,9 +53,15 @@ public class ScannerActivity extends Activity implements NfcReaderTask.Delegate,
 		return dp;
 	}
 
+
+	public static RegisterActivity registerActivity;
+
+	private View _mainView;
 	private TextView _statusText;
+	private TextView _timeText;
 	private NfcAdapter _nfcAdapter;
 	private boolean _hasLaunchedMain;
+	private boolean _isDone;
 
 	private static String MIME_TEXT_PLAIN = "text/plain";
 
@@ -64,7 +73,11 @@ public class ScannerActivity extends Activity implements NfcReaderTask.Delegate,
         setContentView(R.layout.activity_scan);
 
 		_statusText = (TextView)findViewById(R.id.scan_label_status);
+		_timeText = (TextView)findViewById(R.id.scan_label_error);
+		_mainView = findViewById(R.id.scan_view);
 		_nfcAdapter = NfcAdapter.getDefaultAdapter(this);
+
+		_mainView.setOnTouchListener(this);
 
 		if (!_nfcAdapter.isEnabled()) {
 			new AlertDialog.Builder(this)
@@ -204,6 +217,21 @@ public class ScannerActivity extends Activity implements NfcReaderTask.Delegate,
 
 	/*
 	================
+	OnTouchListener
+	================
+	*/
+	@Override
+	public boolean onTouch(View view, MotionEvent motionEvent) {
+		if (_isDone) {
+			launchMainActivity(0);
+		}
+
+		return false;
+	}
+
+
+	/*
+	================
 	NfcReaderTask Delegate
 	================
 	*/
@@ -211,8 +239,14 @@ public class ScannerActivity extends Activity implements NfcReaderTask.Delegate,
 	public void nfcIdSuccess(String nfcId) {
 		_statusText.setText("Scan successful");
 
-		TagUploader uploader = new TagUploader(this);
-		uploader.uploadTag(nfcId);
+		if (registerActivity != null) {
+			registerActivity.scannerActivityScannedTag(nfcId);
+			finish();
+		} else {
+			showProgressHUD();
+			TagUploader uploader = new TagUploader(this);
+			uploader.uploadTag(nfcId);
+		}
 	}
 
 	@Override
@@ -228,28 +262,19 @@ public class ScannerActivity extends Activity implements NfcReaderTask.Delegate,
 	*/
 	@Override
 	public void tagUploadedSuccessfully(TagUploader.UploadResponse response) {
-		_statusText.setText("Success! Great success!");
-
-		LayoutInflater inflater = getLayoutInflater();
-		View view = inflater.inflate(R.layout.view_scan_report, null);
-		TextView statusText = (TextView)view.findViewById(R.id.scan_report_status);
-		TextView remaining = (TextView)view.findViewById(R.id.scan_report_remaining);
-
-		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-				RelativeLayout.LayoutParams.MATCH_PARENT,
-				RelativeLayout.LayoutParams.MATCH_PARENT
-		);
-		addContentView(view, params);
+		hideProgressHUD();
+		_isDone = true;
 
 		if (response.tagRegistered == true) {
-			statusText.setText("JUHU");
-			remaining.setText("");
+			_statusText.setText("Suksess!");
+			_timeText.setText("");
 		} else {
-			statusText.setText("æsjda");
+			_mainView.setBackgroundColor(getResources().getColor(R.color.error_background));
+			_statusText.setText("Chip er tagget!");
 
 			int h = (int)response.cooldownExpireTime / 3600;
-			int m = ((int)response.cooldownExpireTime - h*3600) / 60;
-			int s = ((int)response.cooldownExpireTime - m*60);
+			int m = ((int)response.cooldownExpireTime % 3600) / 60;
+			int s = ((int)response.cooldownExpireTime % 60);
 
 			String txt = "";
 
@@ -265,14 +290,15 @@ public class ScannerActivity extends Activity implements NfcReaderTask.Delegate,
 				txt += "0";
 			txt += "" + s;
 
-			txt += " gjenstår";
-			remaining.setText(txt);
+			txt = "Prøv igjen om " + txt;
+			_timeText.setText(txt);
 		}
 	}
 
 	@Override
 	public void tagUploadFailed(int errorCode) {
+		hideProgressHUD();
+		_isDone = true;
 		_statusText.setText("Failed to upload :(");
-		launchMainActivity(1000);
 	}
 }

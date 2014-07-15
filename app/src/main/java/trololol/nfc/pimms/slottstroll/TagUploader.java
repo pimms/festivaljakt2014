@@ -4,6 +4,8 @@ package trololol.nfc.pimms.slottstroll;
 import android.content.Context;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 
 import org.json.JSONObject;
 
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TagUploader implements HTTP.Delegate {
+
 	public interface Delegate {
 		// That the scan was uploaded does not mean that the tag was registered successfully.
 		// Check the response object carefully!
@@ -25,7 +28,6 @@ public class TagUploader implements HTTP.Delegate {
 		public boolean tagRegistered;
 		public long cooldownExpireTime;
 		public String tagOwnerName;
-		public List<String> previousTaggers;
 	}
 
 
@@ -40,7 +42,7 @@ public class TagUploader implements HTTP.Delegate {
 		String url = HTTP.ROOT_URL;
 		url += "tag.php";
 		url += "?tag=" + tag.trim();
-		url +="&user=" + ScanApplication.uniqueAndroidID();
+		url +="&user=" + UserPreferences.getUserTag();
 
 		HTTP.getWebsite(url, this);
 	}
@@ -67,10 +69,15 @@ public class TagUploader implements HTTP.Delegate {
 			int score = json.getInt("score");
 			UserPreferences.setUserScore(score);
 
+			response.tagOwnerName = json.getString("owner_name");
+
 			boolean registered = json.getBoolean("tag_registered");
 			response.tagRegistered = registered;
 			if (!registered) {
 				response.cooldownExpireTime = json.getInt("cooldown");
+			} else {
+				TagDatabase db = new TagDatabase(ScanApplication.sharedApplicationContext());
+				db.insertName(response);
 			}
 
 			_delegate.tagUploadedSuccessfully(response);

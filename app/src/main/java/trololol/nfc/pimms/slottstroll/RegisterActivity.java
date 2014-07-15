@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import org.json.JSONObject;
 
+import java.net.URLEncoder;
+
 
 public class RegisterActivity extends BaseActivity implements HTTP.Delegate, View.OnClickListener {
 	private String _tagID;
@@ -74,13 +76,18 @@ public class RegisterActivity extends BaseActivity implements HTTP.Delegate, Vie
 	}
 
 	private void registerUser() {
-		String url = HTTP.ROOT_URL;
-		url += "register.php";
-		url += "?username=" + getEnteredName();
-		url += "&usertag=" + _tagID;
+		try {
+			String url = HTTP.ROOT_URL;
+			url += "register.php";
+			url += "?username=" + URLEncoder.encode(getEnteredName(), "UTF-8");
+			url += "&usertag=" + _tagID;
+			url += "&userid=" + ScanApplication.uniqueAndroidID();
 
-		HTTP.getWebsite(url, this);
-		showProgressHUD();
+			HTTP.getWebsite(url, this);
+			showProgressHUD();
+		} catch (Exception ex) {
+			displayAlert("SORRY! Noe gikk forferdelig galt. Prøv igjen en annen dag.");
+		}
 	}
 
 
