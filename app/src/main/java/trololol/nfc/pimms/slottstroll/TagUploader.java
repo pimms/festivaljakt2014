@@ -1,8 +1,13 @@
 package trololol.nfc.pimms.slottstroll;
 
 
+import android.content.Context;
+import android.provider.Settings;
+import android.util.Log;
+
 import org.json.JSONObject;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,26 +37,10 @@ public class TagUploader implements HTTP.Delegate {
 	}
 
 	public void uploadTag(String tag) {
-		// HIJACK YO
-		if (true == (true || false)) {
-			UploadResponse response = new UploadResponse();
-			response.tagRegistered = false;
-			response.cooldownExpireTime = 0;
-			response.tagOwnerName = "YoloPer69";
-			response.previousTaggers = new ArrayList<String>();
-			response.previousTaggers.add("FjesMor");
-			response.previousTaggers.add("NeidaJodda");
-			response.previousTaggers.add("McMuffin");
-
-			_delegate.tagUploadedSuccessfully(response);
-			return;
-
-		}
-
 		String url = HTTP.ROOT_URL;
-		url += "?tag=" + tag;
-		url += "&username=" + UserPreferences.getUserName();
-		url += "&usertag=" + UserPreferences.getUserTag();
+		url += "tag.php";
+		url += "?tag=" + tag.trim();
+		url +="&user=" + ScanApplication.uniqueAndroidID();
 
 		HTTP.getWebsite(url, this);
 	}
@@ -67,11 +56,24 @@ public class TagUploader implements HTTP.Delegate {
 		String text = http.getTextContent();
 
 		try {
+			UploadResponse response = new UploadResponse();
 			JSONObject json = new JSONObject(text);
+			if (json.getBoolean("status") == false) {
+				_delegate.tagUploadFailed(-349349);
+				Log.e("TagUploader", json.getString("message"));
+				return;
+			}
 
-			// TODO
+			int score = json.getInt("score");
+			UserPreferences.setUserScore(score);
 
-			_delegate.tagUploadedSuccessfully(null);
+			boolean registered = json.getBoolean("tag_registered");
+			response.tagRegistered = registered;
+			if (!registered) {
+				response.cooldownExpireTime = json.getInt("cooldown");
+			}
+
+			_delegate.tagUploadedSuccessfully(response);
 		} catch (Exception ex) {
 			_delegate.tagUploadFailed(-4458);
 		}

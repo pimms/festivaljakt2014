@@ -50,9 +50,6 @@ public class ScannerActivity extends Activity implements NfcReaderTask.Delegate,
 		return dp;
 	}
 
-
-	public static RegisterActivity registerActivity;
-
 	private TextView _statusText;
 	private NfcAdapter _nfcAdapter;
 	private boolean _hasLaunchedMain;
@@ -214,13 +211,8 @@ public class ScannerActivity extends Activity implements NfcReaderTask.Delegate,
 	public void nfcIdSuccess(String nfcId) {
 		_statusText.setText("Scan successful");
 
-		if (registerActivity != null) {
-			registerActivity.scannerActivityScannedTag(nfcId);
-			finish();
-		} else {
-			TagUploader uploader = new TagUploader(this);
-			uploader.uploadTag(nfcId);
-		}
+		TagUploader uploader = new TagUploader(this);
+		uploader.uploadTag(nfcId);
 	}
 
 	@Override
@@ -254,7 +246,27 @@ public class ScannerActivity extends Activity implements NfcReaderTask.Delegate,
 			remaining.setText("");
 		} else {
 			statusText.setText("æsjda");
-			remaining.setText("TT:MM gjenstår");
+
+			int h = (int)response.cooldownExpireTime / 3600;
+			int m = ((int)response.cooldownExpireTime - h*3600) / 60;
+			int s = ((int)response.cooldownExpireTime - m*60);
+
+			String txt = "";
+
+			if (h < 10)
+				txt += "0";
+			txt += "" + h + ":";
+
+			if (m < 10)
+				txt += "0";
+			txt += "" + m + ":";
+
+			if (s < 10)
+				txt += "0";
+			txt += "" + s;
+
+			txt += " gjenstår";
+			remaining.setText(txt);
 		}
 	}
 
