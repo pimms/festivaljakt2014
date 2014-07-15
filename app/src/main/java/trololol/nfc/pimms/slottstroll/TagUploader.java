@@ -41,7 +41,7 @@ public class TagUploader implements HTTP.Delegate {
 	public void uploadTag(String tag) {
 		String url = HTTP.ROOT_URL;
 		url += "tag.php";
-		url += "?tag=" + tag.trim();
+		url += "?tag=" + ScanApplication.md5(tag);
 		url +="&user=" + UserPreferences.getUserTag();
 
 		HTTP.getWebsite(url, this);

@@ -80,7 +80,7 @@ public class RegisterActivity extends BaseActivity implements HTTP.Delegate, Vie
 			String url = HTTP.ROOT_URL;
 			url += "register.php";
 			url += "?username=" + URLEncoder.encode(getEnteredName(), "UTF-8");
-			url += "&usertag=" + _tagID;
+			url += "&usertag=" + ScanApplication.md5(_tagID);
 			url += "&userid=" + ScanApplication.uniqueAndroidID();
 
 			HTTP.getWebsite(url, this);

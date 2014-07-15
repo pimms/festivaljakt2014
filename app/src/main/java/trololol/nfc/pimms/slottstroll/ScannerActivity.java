@@ -237,9 +237,12 @@ public class ScannerActivity extends BaseActivity implements NfcReaderTask.Deleg
 	*/
 	@Override
 	public void nfcIdSuccess(String nfcId) {
-		_statusText.setText("Scan successful");
-
-		if (registerActivity != null) {
+		if (ScanApplication.md5(nfcId).equals(UserPreferences.getUserTag())) {
+			_mainView.setBackgroundColor(getResources().getColor(R.color.error_background));
+			_statusText.setText("Nei nei nei");
+			_timeText.setText("Man kan ikke skanne seg selv, vel?");
+			_isDone = true;
+		} else if (registerActivity != null) {
 			registerActivity.scannerActivityScannedTag(nfcId);
 			finish();
 		} else {
