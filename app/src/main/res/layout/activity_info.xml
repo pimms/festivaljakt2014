@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="#16aa16"
+	android:padding="20dp">
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+			<TextView
+				android:text="Om Slottstroll"
+				android:textSize="20sp"
+				android:textStyle="bold"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"/>
+			<TextView
+				android:text="Slottstroll går ut på å samle flest mulig Slottsfestivaldeltagere ved å skanne betalingsbrikken som er festet på inngangsbåndet deres. Når en chip er skannet kan den ikke skannes av noen før det har gått fire timer. Det er ikke mulig å skanne sin egen chip."
+				android:textSize="20sp"
+				android:textStyle="normal"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"/>
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="20dp"/>
+
+			<TextView
+				android:text="Sikkerhet"
+				android:textSize="20sp"
+				android:textStyle="bold"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"/>
+			<TextView
+				android:text="Chip-IDene som skannes av applikasjonen kan IKKE benyttes til å betale i boder, hente ut pengene tilknyttet kontoen eller på annen måte brukes til identitetstyveri.\n\nFor ekstra sikkerhet sendes og lagres kun hash-verdiene til chip-IDene. Hash-funksjoner er 'enveiskjørte gater' for data som er ekstremt vanskelige å reversere. På denne måten er det i praksis umulig å finne ut den opprinnelige IDen, og du og din chip kan trygt være med på leken.\n\nLes mer om hash-funksjoner her:"
+				android:textSize="20sp"
+				android:textStyle="normal"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"/>
+			<TextView
+				android:text="http://en.wikipedia.org/wiki/Hash_function"
+				android:textSize="20sp"
+				android:textStyle="normal"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:autoLink="web"/>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="20dp"/>
+			<TextView
+				android:text="Tilleggsinformasjon"
+				android:textSize="20sp"
+				android:textStyle="bold"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"/>
+			<TextView
+				android:text="Utviklet av Joakim Stien.\n\nApplikasjonen er ikke affiliert med eller godkjent av Slottsfjellfestivalen.\n\nAll bruk av applikasjonen foregår på egen risiko."
+				android:textSize="20sp"
+				android:textStyle="normal"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"/>
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="20dp"/>
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>

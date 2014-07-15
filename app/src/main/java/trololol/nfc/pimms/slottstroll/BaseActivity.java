@@ -2,10 +2,18 @@ package trololol.nfc.pimms.slottstroll;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.view.Window;
 
 
 public class BaseActivity extends Activity {
 	private ProgressDialog _progressDialog;
+
+	@Override
+	protected void onCreate(Bundle b) {
+		super.onCreate(b);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+	}
 
 
 	protected void showProgressHUD() {

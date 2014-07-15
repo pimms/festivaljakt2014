@@ -9,14 +9,6 @@
     tools:context=".MainActivity"
 	android:background="@color/default_background">
 
-	<Button
-		android:text="Info"
-		android:id="@+id/main_button_info"
-		android:layout_alignParentBottom="true"
-		android:layout_alignParentLeft="true"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"/>
-
 	<TextView
 		android:layout_centerHorizontal="true"
 		android:layout_marginTop="40dp"
@@ -28,13 +20,29 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"/>
 
+
+	<TextView
+		android:id="@+id/main_label_help"
+		android:text="Score poeng ved å skanne armbåndschipen til festivaldeltagere\n\nSe flervalgsmeny for mer informasjon"
+		android:textColor="#444444"
+		android:textSize="20dp"
+		android:gravity="center"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_marginTop="30dp"
+		android:layout_marginBottom="10dp"
+		android:padding="30dp"
+		android:layout_below="@id/main_label_score"/>
+
 	<LinearLayout
+		android:id="@+id/main_listview_layout"
+		android:visibility="gone"
 		android:orientation="vertical"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:layout_marginTop="30dp"
-		android:layout_below="@id/main_label_score"
-		android:layout_above="@id/main_button_info">
+		android:layout_marginBottom="10dp"
+		android:layout_below="@id/main_label_score">
 		<TextView
 			android:id="@+id/main_label_list_prompt"
 			android:layout_marginLeft="10dp"

@@ -25,6 +25,7 @@
 		</activity>
 
 		<activity android:name=".RegisterActivity"/>
+		<activity android:name=".InfoActivity"/>
 
         <activity
             android:name=".ScannerActivity"
