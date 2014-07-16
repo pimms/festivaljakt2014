@@ -1,6 +1,5 @@
-package trololol.nfc.pimms.slottstroll;
+package com.stien.festivaljakt.slottsfjell;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;

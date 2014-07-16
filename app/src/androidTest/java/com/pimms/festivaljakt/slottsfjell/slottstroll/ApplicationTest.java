@@ -1,4 +1,4 @@
-package trololol.nfc.pimms.slottstroll;
+package com.pimms.festivaljakt.slottsfjell.slottstroll;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -1,8 +1,6 @@
-package trololol.nfc.pimms.slottstroll;
+package com.stien.festivaljakt.slottsfjell;
 
-import android.net.Uri;
 import android.os.Bundle;
-import android.webkit.WebView;
 
 /**
  * Created by pimms on 7/15/14.

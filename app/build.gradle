@@ -5,7 +5,7 @@ android {
     buildToolsVersion "20.0.0"
 
     defaultConfig {
-        applicationId "trololol.nfc.pimms.slottstroll"
+        applicationId "com.stien.festivaljakt.slottsfjell"
         minSdkVersion 19
         targetSdkVersion 20
         versionCode 1

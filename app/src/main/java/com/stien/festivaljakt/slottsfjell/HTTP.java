@@ -1,18 +1,13 @@
-package trololol.nfc.pimms.slottstroll;
+package com.stien.festivaljakt.slottsfjell;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.Looper;
-import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.inputmethod.InputConnection;
 
 import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -29,7 +24,7 @@ public class HTTP {
 		void httpFailure(HTTP http, int errorCode);
 	}
 
-	public static final String ROOT_URL = "http://10.0.0.26/slottsfjell/";
+	public static final String ROOT_URL = "http://192.168.10.190/slottsfjell/";
 
 
 	/*

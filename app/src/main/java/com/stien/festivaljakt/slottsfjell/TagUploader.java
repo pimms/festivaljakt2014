@@ -1,17 +1,9 @@
-package trololol.nfc.pimms.slottstroll;
+package com.stien.festivaljakt.slottsfjell;
 
 
-import android.content.Context;
-import android.provider.Settings;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
 
 import org.json.JSONObject;
-
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
 
 public class TagUploader implements HTTP.Delegate {
 

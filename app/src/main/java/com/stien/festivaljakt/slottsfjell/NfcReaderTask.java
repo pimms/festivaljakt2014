@@ -1,4 +1,4 @@
-package trololol.nfc.pimms.slottstroll;
+package com.stien.festivaljakt.slottsfjell;
 
 import android.nfc.Tag;
 import android.nfc.tech.NfcV;

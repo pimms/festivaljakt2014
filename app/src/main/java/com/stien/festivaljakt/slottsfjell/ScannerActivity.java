@@ -1,4 +1,4 @@
-package trololol.nfc.pimms.slottstroll;
+package com.stien.festivaljakt.slottsfjell;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -15,11 +15,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class ScannerActivity extends BaseActivity implements NfcReaderTask.Delegate,
@@ -69,6 +67,11 @@ public class ScannerActivity extends BaseActivity implements NfcReaderTask.Deleg
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+		if (!ScanApplication.RELEASE_READY) {
+			finish();
+		}
+
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_scan);
 

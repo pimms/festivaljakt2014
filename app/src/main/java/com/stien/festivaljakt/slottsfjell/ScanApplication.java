@@ -1,4 +1,4 @@
-package trololol.nfc.pimms.slottstroll;
+package com.stien.festivaljakt.slottsfjell;
 
 import android.app.Application;
 import android.content.Context;
@@ -10,6 +10,8 @@ import java.security.MessageDigest;
  * Created by pimms on 7/15/14.
  */
 public class ScanApplication extends Application {
+	public static final boolean RELEASE_READY = false;
+
 	private static ScanApplication _sharedInstance;
 
 	public static ScanApplication sharedApplication() {
