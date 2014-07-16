@@ -24,7 +24,7 @@ public class HTTP {
 		void httpFailure(HTTP http, int errorCode);
 	}
 
-	public static final String ROOT_URL = "http://192.168.10.190/slottsfjell/";
+	public static final String ROOT_URL = "http://jstien.no-ip.biz/slottsfjell/";
 
 
 	/*

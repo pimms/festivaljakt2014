@@ -1,4 +1,6 @@
-festivaljakt2014
+Festivaljakt - Slottsfjell
 ================
 
-"Festivaljakt - Slottsfjell" repository.
+Koden for applikasjonen "Festivaljakt - Slottsfjell" ligger her. 
+
+
