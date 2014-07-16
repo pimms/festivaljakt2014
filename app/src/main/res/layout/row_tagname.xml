@@ -4,13 +4,23 @@
 	android:orientation="vertical"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:padding="20dp"
+	android:paddingLeft="20dp"
+	android:paddingTop="20dp"
+	android:paddingRight="20dp"
+	android:paddingBottom="5dp"
 	android:background="#EDEDED">
 	<TextView
-		android:id="@+id/textView"
+		android:id="@+id/textView1"
 		android:textSize="25sp"
 		android:text="Hey hey"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:textColor="#111111"/>
+	<TextView
+		android:id="@+id/textView2"
+		android:text="hue hue hue"
+		android:layout_gravity="right"
+		android:gravity="right"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"/>
 </LinearLayout>

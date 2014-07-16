@@ -115,6 +115,17 @@ public class RegisterActivity extends BaseActivity implements HTTP.Delegate, Vie
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(intent);
+
+				/* The finish() call does in turn make none of the "standard" exit
+				 * methods (onStop(), onPause(), etc) get called, so the global
+				 * reference must be nulled out manually before the activity is actually
+				 * removed from the stack.
+				 *
+				 * mother
+				 * fucking
+				 * globals
+				 */
+				ScannerActivity.registerActivity = null;
 				finish();
 			}
 		} catch (Exception ex) {

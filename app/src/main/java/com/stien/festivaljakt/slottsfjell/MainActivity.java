@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -113,10 +114,10 @@ public class MainActivity extends BaseActivity {
 			startActivity(intent);
 		} else {
 			TagDatabase db = new TagDatabase(ScanApplication.sharedApplicationContext());
-			List<String> names = db.getNames();
-			_listView.setAdapter(new TagAdapter(db.getNames()));
+			List<Tag> tags = db.getTags();
+			_listView.setAdapter(new TagAdapter(tags));
 
-			if (names.size() == 0) {
+			if (tags.size() == 0) {
 				_listLayout.setVisibility(View.INVISIBLE);
 				_helpText.setVisibility(View.VISIBLE);
 			} else {

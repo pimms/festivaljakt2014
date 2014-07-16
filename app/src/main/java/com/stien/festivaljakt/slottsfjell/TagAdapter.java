@@ -10,21 +10,21 @@ import android.widget.TextView;
 import java.util.List;
 
 public class TagAdapter extends BaseAdapter {
-	List<String> _names;
+	List<Tag> _tags;
 
 
-	public TagAdapter(List<String> names) {
-		_names = names;
+	public TagAdapter(List<Tag> tags) {
+		_tags = tags;
 	}
 
 	@Override
 	public int getCount() {
-		return _names.size();
+		return _tags.size();
 	}
 
 	@Override
 	public Object getItem(int i) {
-		return _names.get(i);
+		return _tags.get(i);
 	}
 
 	@Override
@@ -38,8 +38,12 @@ public class TagAdapter extends BaseAdapter {
 			view = LayoutInflater.from(ScanApplication.sharedApplicationContext()).inflate(R.layout.row_tagname, null);
 		}
 
-		TextView tv = (TextView)view.findViewById(R.id.textView);
-		tv.setText(_names.get(_names.size() - 1 - i));
+		TextView name = (TextView)view.findViewById(R.id.textView1);
+		TextView time = (TextView)view.findViewById(R.id.textView2);
+
+		Tag tag = _tags.get(_tags.size() - 1 - i);
+		name.setText(tag.getName());
+		time.setText(tag.getPrettyTime());
 
 		return view;
 	}
