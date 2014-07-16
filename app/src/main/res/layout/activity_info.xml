@@ -21,7 +21,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"/>
 			<TextView
-				android:text="Samle flest mulig poeng ved å skanne brikken som er festet på inngangsbåndet til Slottsfjellfestivaldeltagere! Når en brikke er skannet kan den ikke skannes av noen før det har gått fire timer. Det er ikke mulig å skanne sin egen brikke. Hvem kan samle flest?"
+				android:text="Samle flest mulig poeng ved å skanne brikken som er festet på inngangsbåndet til Slottsfjellfestivaldeltagere! Når en brikke er skannet kan den ikke skannes av noen før det har gått fire timer. Det er ikke mulig å skanne sin egen brikke.\n\nPoeng kan byttes inn i heder og ære i alle boder.\n\nApplikasjonen er laget utelukkende for bruk under Slottsfjellfestivalen 2014 og vil slutte å fungere klokken 12:00 den 20. august 2014."
 				android:textSize="20sp"
 				android:textStyle="normal"
 				android:layout_width="match_parent"
@@ -60,7 +60,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"/>
 			<TextView
-				android:text="Utviklet av Joakim Stien.\njoakim.stien@gmail.com\n\nApplikasjonen ble utviklet på veldig kort tid, så sannsynligheten for feil, mangler og ustabilitet er høy. Send feilrapporter til eposten skrevet over. Kritiske ting vil bli forsøkt rettet opp i snarest.\n\nApplikasjonen er ikke affiliert med eller godkjent av Slottsfjellfestivalen.\n\nAll bruk av applikasjonen foregår på egen risiko.\n\nApplikasjonen har åpen kildekode frigitt under MIT-lisensen og kan finnes på GitHub:"
+				android:text="Utviklet av Joakim Stien.\njoakim.stien@gmail.com\n\nApplikasjonen ble utviklet på veldig kort tid, så sannsynligheten for feil, mangler og ustabilitet er høy. Send feilrapporter til eposten skrevet over. Kritiske ting vil bli forsøkt rettet opp i snarest. Trivielle feil vil bli ignorert til fordel for en øl i solen.\n\nApplikasjonen er ikke affiliert med eller godkjent av Slottsfjellfestivalen.\n\nAll bruk av applikasjonen foregår på egen risiko.\n\nApplikasjonen har åpen kildekode frigitt under MIT-lisensen og kan finnes på GitHub:"
 				android:autoLink="email"
 				android:textSize="20sp"
 				android:textStyle="normal"
