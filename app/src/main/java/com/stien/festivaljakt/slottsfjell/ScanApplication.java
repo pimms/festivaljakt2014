@@ -12,6 +12,9 @@ import java.security.MessageDigest;
 public class ScanApplication extends Application {
 	public static final boolean RELEASE_READY = true;
 
+	/*  The application will stop working after Sunday, July 20th, 1200hrs  */
+	public static final long END_OF_DAYS = 1405857600L;
+
 	private static ScanApplication _sharedInstance;
 
 	public static ScanApplication sharedApplication() {

@@ -68,7 +68,8 @@ public class ScannerActivity extends BaseActivity implements NfcReaderTask.Deleg
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-		if (!ScanApplication.RELEASE_READY) {
+		if (!ScanApplication.RELEASE_READY ||
+			(System.currentTimeMillis()/1000L) > ScanApplication.END_OF_DAYS) {
 			finish();
 			return;
 		}

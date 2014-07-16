@@ -83,8 +83,28 @@ public class MainActivity extends BaseActivity {
 			return;
 		}
 
+		// Populate the main list view
 		NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(this);
-		if (nfcAdapter == null) {
+		TagDatabase db = new TagDatabase(ScanApplication.sharedApplicationContext());
+		List<Tag> tags = db.getTags();
+		_listView.setAdapter(new TagAdapter(tags));
+
+		if (tags.size() == 0) {
+			_listLayout.setVisibility(View.INVISIBLE);
+			_helpText.setVisibility(View.VISIBLE);
+		} else {
+			_listLayout.setVisibility(View.VISIBLE);
+			_helpText.setVisibility(View.INVISIBLE);
+		}
+
+
+		if (System.currentTimeMillis() / 1000L > ScanApplication.END_OF_DAYS) {
+			new AlertDialog.Builder(this)
+					.setTitle("Festivalen er over")
+					.setMessage("Takk for at du installerte Festivaljakt - Slottsfjell!\n\nDu kan ikke lenger skanne brikker eller registrere deg.")
+					.setNeutralButton("Ok", null)
+					.show();
+		} else if (nfcAdapter == null) {
 			new AlertDialog.Builder(this)
 					.setTitle("Beklager!")
 					.setMessage("Telefonen din støtter ikke NFC, som applikasjonen behøver for å fungere.")
@@ -108,22 +128,11 @@ public class MainActivity extends BaseActivity {
 					})
 					.show();
 		} else if (UserPreferences.getUserName() == null || UserPreferences.getUserTag() == null) {
+			// Everything is in order - proceed to registration!
 			Intent intent = new Intent(this, RegisterActivity.class);
 			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(intent);
-		} else {
-			TagDatabase db = new TagDatabase(ScanApplication.sharedApplicationContext());
-			List<Tag> tags = db.getTags();
-			_listView.setAdapter(new TagAdapter(tags));
-
-			if (tags.size() == 0) {
-				_listLayout.setVisibility(View.INVISIBLE);
-				_helpText.setVisibility(View.VISIBLE);
-			} else {
-				_listLayout.setVisibility(View.VISIBLE);
-				_helpText.setVisibility(View.INVISIBLE);
-			}
 		}
 	}
 }
