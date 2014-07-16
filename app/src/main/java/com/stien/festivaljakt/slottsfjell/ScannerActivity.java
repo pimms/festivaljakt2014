@@ -70,6 +70,7 @@ public class ScannerActivity extends BaseActivity implements NfcReaderTask.Deleg
 
 		if (!ScanApplication.RELEASE_READY) {
 			finish();
+			return;
 		}
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);

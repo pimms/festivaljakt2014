@@ -115,6 +115,7 @@ public class RegisterActivity extends BaseActivity implements HTTP.Delegate, Vie
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(intent);
+				finish();
 			}
 		} catch (Exception ex) {
 			displayAlert("Noe gikk galt. Prøv igjen senere.");
